@@ -1,3 +1,6 @@
+import math
+#from quant_math.compounding import compound_value
+
 # P_T = P_0 × (1 + r)^T
 
 
@@ -37,3 +40,23 @@ def compound_value(p0, r, T):
     return p0 * (1 + r) ** T
     
     
+
+
+
+
+def cagr(p0, p_t, periods):
+    """Calculate compound annual growth rate."""
+    if p0 <= 0 or p_t <= 0 or periods <= 0:
+        raise ValueError("Inputs must be positive")
+
+    return (p_t / p0) ** (1 / periods) - 1
+
+
+def periods_to_target(p0, target, r):
+    """Calculate periods needed to reach a target."""
+    import math
+
+    if p0 <= 0 or target <= 0 or r <= 0:
+        raise ValueError("Inputs must be positive")
+
+    return math.log(target / p0) / math.log(1 + r)
